@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8209A7161E1487E400108C68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A7151E1487E400108C68 /* AppDelegate.swift */; };
-		8209A7181E1487E400108C68 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A7171E1487E400108C68 /* FirstViewController.swift */; };
+		8209A7181E1487E400108C68 /* CurrentLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A7171E1487E400108C68 /* CurrentLocationVC.swift */; };
 		8209A71A1E1487E400108C68 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A7191E1487E400108C68 /* SecondViewController.swift */; };
 		8209A71D1E1487E400108C68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8209A71B1E1487E400108C68 /* Main.storyboard */; };
 		8209A71F1E1487E400108C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8209A71E1E1487E400108C68 /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		8209A7121E1487E400108C68 /* InMyZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InMyZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8209A7151E1487E400108C68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8209A7171E1487E400108C68 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		8209A7171E1487E400108C68 /* CurrentLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationVC.swift; sourceTree = "<group>"; };
 		8209A7191E1487E400108C68 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8209A71C1E1487E400108C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8209A71E1E1487E400108C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,13 +99,12 @@
 		8209A7141E1487E400108C68 /* InMyZone */ = {
 			isa = PBXGroup;
 			children = (
-				8209A7151E1487E400108C68 /* AppDelegate.swift */,
-				8209A7171E1487E400108C68 /* FirstViewController.swift */,
-				8209A7191E1487E400108C68 /* SecondViewController.swift */,
+				8209A7471E14880D00108C68 /* Model */,
+				8209A7461E14880500108C68 /* View */,
+				8209A7451E1487FE00108C68 /* Controller */,
+				8209A7481E14881C00108C68 /* Supporting FIles */,
 				8209A71B1E1487E400108C68 /* Main.storyboard */,
-				8209A71E1E1487E400108C68 /* Assets.xcassets */,
 				8209A7201E1487E400108C68 /* LaunchScreen.storyboard */,
-				8209A7231E1487E400108C68 /* Info.plist */,
 			);
 			path = InMyZone;
 			sourceTree = "<group>";
@@ -126,6 +125,39 @@
 				8209A7391E1487E500108C68 /* Info.plist */,
 			);
 			path = InMyZoneUITests;
+			sourceTree = "<group>";
+		};
+		8209A7451E1487FE00108C68 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8209A7171E1487E400108C68 /* CurrentLocationVC.swift */,
+				8209A7191E1487E400108C68 /* SecondViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8209A7461E14880500108C68 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8209A7471E14880D00108C68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8209A7481E14881C00108C68 /* Supporting FIles */ = {
+			isa = PBXGroup;
+			children = (
+				8209A7231E1487E400108C68 /* Info.plist */,
+				8209A7151E1487E400108C68 /* AppDelegate.swift */,
+				8209A71E1E1487E400108C68 /* Assets.xcassets */,
+			);
+			name = "Supporting FIles";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,7 +299,7 @@
 			files = (
 				8209A71A1E1487E400108C68 /* SecondViewController.swift in Sources */,
 				8209A7161E1487E400108C68 /* AppDelegate.swift in Sources */,
-				8209A7181E1487E400108C68 /* FirstViewController.swift in Sources */,
+				8209A7181E1487E400108C68 /* CurrentLocationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
