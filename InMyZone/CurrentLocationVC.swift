@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
   
@@ -17,6 +18,18 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
   @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var tagButton: UIButton!
   @IBOutlet weak var getButton: UIButton!
+  
+  let locationManager = CLLocationManager()
+  let geoCoder = CLGeocoder()     // object that will perform the geocoding
+  
+  var timer: Timer?
+  var location: CLLocation?
+  var placemark: CLPlacemark?     // contains the address results
+  var updatingLocation = false
+  var performingReverseGeocoding = false
+  var lastGeocodingError: Error?
+  var lastLocationError: Error?
+  var managedObjectContext: NSManagedObjectContext!
   
   // This method tells the location manager that the VC is its delegate & want to recieve locations with an accuracy of up to ten meters.
   @IBAction func getLocation() {
@@ -45,17 +58,6 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
     configureGetButton()
   }
   
-  let locationManager = CLLocationManager()
-  let geoCoder = CLGeocoder()     // object that will perform the geocoding
-  
-  var timer: Timer?
-  var location: CLLocation?
-  var placemark: CLPlacemark?     // contains the address results
-  var updatingLocation = false
-  var performingReverseGeocoding = false
-  var lastGeocodingError: Error?
-  var lastLocationError: Error?
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     updateLabels()
@@ -80,6 +82,17 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
     stopLocationManager()
     updateLabels()
     configureGetButton()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "TagLocation" {
+      let navigationController = segue.destination as! UINavigationController
+      let controller = navigationController.topViewController as! LocationDetailsVC
+      
+      controller.coordinate = location!.coordinate
+      controller.placemark = placemark
+      controller.managedObjectContext = managedObjectContext
+    }
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -259,7 +272,6 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
     }
     return line1 + "\n" + line2
   }
-  
   
   func showLocationServicesDeniedAlert() {
     let alert = UIAlertController(title: "Location Services Disabled", message: "Please enable location services", preferredStyle: .alert)
