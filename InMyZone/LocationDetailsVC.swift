@@ -50,7 +50,7 @@ class LocationDetailsVC: UITableViewController {
       hudView.text = "Updated"
       location = temp
     } else {
-      hudView.text = "Tagged"
+      hudView.text = "Marked"
       location = Location(context: managedObjectContext)
       location.photoID = nil
     }
@@ -202,27 +202,14 @@ class LocationDetailsVC: UITableViewController {
   }
   
   func string(from placemark: CLPlacemark) -> String {
-    var text = ""
-    
-    if let s = placemark.subThoroughfare {
-      text += s + " "
-    }
-    if let s = placemark.thoroughfare {
-      text += s + ", "
-    }
-    if let s = placemark.locality {
-      text += s + ", "
-    }
-    if let s = placemark.administrativeArea {
-      text += s + " "
-    }
-    if let s = placemark.postalCode {
-      text += s + ", "
-    }
-    if let s = placemark.country {
-      text += s
-    }
-    return text
+    var line = ""
+    line.add(text: placemark.subThoroughfare)
+    line.add(text: placemark.thoroughfare, separatedBy: " ")
+    line.add(text: placemark.locality, separatedBy: ", ")
+    line.add(text: placemark.administrativeArea, separatedBy: ", ")
+    line.add(text: placemark.postalCode, separatedBy: " ")
+    line.add(text: placemark.country, separatedBy: ", ")
+    return line
   }
   
   func listenForBackgroundNotification() {

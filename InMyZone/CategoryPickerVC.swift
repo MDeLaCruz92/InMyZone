@@ -18,11 +18,18 @@ class CategoryPickerVC: UITableViewController {
     "Bookstore",
     "Club",
     "Grocery Store",
-    "Historic Building",
+    "Gym",
+    "Highway",
     "House",
-    "Icecream Vendor",
+    "Mall",
+    "Fast Food Spot",
+    "My Personal Zone",
     "Landmark",
-    "Park"]
+    "Park",
+    "School",
+    "Shopping Zone",
+    "Store",
+    "Work"]
   
   var selectedIndexPath = IndexPath()
   

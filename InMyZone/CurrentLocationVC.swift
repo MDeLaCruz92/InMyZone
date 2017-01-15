@@ -64,10 +64,6 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
     configureGetButton()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-  
   // MARK: - CLLocationManagerDelegate
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("didFailWithError \(error)")
@@ -85,7 +81,7 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "TagLocation" {
+    if segue.identifier == "MarkLocation" {
       let navigationController = segue.destination as! UINavigationController
       let controller = navigationController.topViewController as! LocationDetailsVC
       
@@ -181,7 +177,7 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
       longitudeLabel.text = ""
       addressLabel.text = ""
       tagButton.isHidden = true
-      messageLabel.text = "Tap 'Get My Location' to Start"
+      messageLabel.text = "Tap 'Locate My Zone' to Start"
       
       let statusMessage: String
       if let error = lastLocationError as? NSError {
@@ -196,7 +192,7 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
       } else if updatingLocation {
         statusMessage = "Searching..."
       } else {
-        statusMessage = "Tap 'Get My Location' to Start"
+        statusMessage = "Tap 'Locate My Zone' to Start"
       }
       
       messageLabel.text = statusMessage
@@ -242,35 +238,22 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate {
     if updatingLocation {
       getButton.setTitle("Stop", for: .normal)
     } else {
-      getButton.setTitle("Get My Location", for: .normal)
+      getButton.setTitle("Locate My Zone", for: .normal)
     }
   }
   
   func string(from placemark: CLPlacemark) -> String {
-    // Create new string variable for the first line of text
     var line1 = ""
+    line1.add(text: placemark.subThoroughfare)
+    line1.add(text: placemark.thoroughfare, separatedBy: " ")
     
-    // if the placemark has a subThoroughfare, add it to the string
-    if let s = placemark.subThoroughfare {
-      line1 += s + ""
-    }
-    // Adding the thoroughfare is done similarly
-    if let s = placemark.thoroughfare {
-      line1 += s
-    }
-    // adds the city, state/province, and zip code
     var line2 = ""
+    line2.add(text: placemark.locality)
+    line2.add(text: placemark.administrativeArea, separatedBy: " ")
+    line2.add(text: placemark.postalCode, separatedBy: " ")
     
-    if let s = placemark.locality {
-      line2 += s + ""
-    }
-    if let s = placemark.administrativeArea {
-      line2 += s + ""
-    }
-    if let s = placemark.postalCode {
-      line2 += s
-    }
-    return line1 + "\n" + line2
+    line1.add(text: line2, separatedBy: "\n")
+    return line1
   }
   
   func showLocationServicesDeniedAlert() {
