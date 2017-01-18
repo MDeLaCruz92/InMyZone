@@ -10,6 +10,13 @@ import UIKit
 import CoreLocation
 import CoreData
 
+private let dateFormatter: DateFormatter = {
+  let formatter = DateFormatter()
+  formatter.dateStyle = .medium
+  formatter.timeStyle = .short
+  return formatter
+}() //perform or evaluate the closure - this runs the cod inside the closure and return the object
+
 class LocationDetailsVC: UITableViewController {
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var categoryLabel: UILabel!
@@ -36,7 +43,7 @@ class LocationDetailsVC: UITableViewController {
         categoryName = location.category
         date = location.date
         
-        coordinate = CLLocationCoordinate2DMake(location.latitude, location.latitude)
+        coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
         placemark = location.placemark
       }
     }
@@ -97,13 +104,6 @@ class LocationDetailsVC: UITableViewController {
     categoryLabel.text = categoryName
   }
   
-  private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    formatter.timeStyle = .short
-    return formatter
-  }() //perform or evaluate the closure - this runs the cod inside the closure and reutn the object
-  
   // MARK: viewDidLoad
   
   override func viewDidLoad() {
@@ -135,6 +135,19 @@ class LocationDetailsVC: UITableViewController {
     categoryLabel.text = categoryName
     latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
     longitudeLabel.text = String(format: "%.8f", coordinate.longitude)
+    
+    tableView.backgroundColor = UIColor.black
+    tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
+    tableView.indicatorStyle = .white
+    
+    descriptionTextView.textColor = UIColor.white
+    descriptionTextView.backgroundColor = UIColor.black
+    
+    addPhotoLabel.textColor = UIColor.white
+    addPhotoLabel.highlightedTextColor = addPhotoLabel.textColor
+    
+    addressLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
+    addressLabel.highlightedTextColor = addressLabel.textColor
   }
   
   // MARK: - UITableViewDelegate
@@ -169,6 +182,30 @@ class LocationDetailsVC: UITableViewController {
       return addressLabel.frame.size.height + 20
     default:
       return 44
+    }
+  }
+  // willDisply delegate method is called just before a cell becomes visible.
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = UIColor.black
+    
+    if let textLabel = cell.textLabel {
+      textLabel.textColor = UIColor.white
+      textLabel.highlightedTextColor = textLabel.textColor
+    }
+    
+    if let detailLabel = cell.detailTextLabel {
+      detailLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
+      detailLabel.highlightedTextColor = detailLabel.textColor
+    }
+    
+    let selectionView = UIView(frame: CGRect.zero)
+    selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
+    cell.selectedBackgroundView = selectionView
+    
+    if indexPath.row == 2 {
+      let addressLabel = cell.viewWithTag(100) as! UILabel
+      addressLabel.textColor = UIColor.white
+      addressLabel.highlightedTextColor = addressLabel.textColor
     }
   }
   

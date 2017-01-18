@@ -36,13 +36,20 @@ class LocationsVC: UITableViewController {
     return fetchedResultsController
   }()
   
+  deinit {
+    fetchedResultsController.delegate = nil
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    performFetch()
+    navigationItem.rightBarButtonItem = editButtonItem
+
     tableView.backgroundColor = UIColor.black
     tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
     tableView.indicatorStyle = .white
-    navigationItem.rightBarButtonItem = editButtonItem
+    tableView.sectionHeaderHeight = 28
+    
+    performFetch()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,10 +138,6 @@ class LocationsVC: UITableViewController {
     } catch {
       fatalCoreDataError(error)
     }
-  }
-  
-  deinit {
-    fetchedResultsController.delegate = nil
   }
   
 }

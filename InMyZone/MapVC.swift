@@ -14,6 +14,7 @@ class MapVC: UIViewController {
   @IBOutlet weak var mapView: MKMapView!
   
   var locations = [Location]()
+  
   var managedObjectContext: NSManagedObjectContext! {
     didSet {
       NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: OperationQueue.main) { notification in
@@ -23,7 +24,6 @@ class MapVC: UIViewController {
       }
     }
   }
-  
   
   @IBAction func showUser() {
     let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 1000, 1000)
@@ -92,8 +92,10 @@ class MapVC: UIViewController {
       }
       
       let center = CLLocationCoordinate2D(
-        latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) / 2,
-        longitude: topLeftCoord.longitude - (topLeftCoord.longitude - bottomRightCoord.longitude) / 2)
+        latitude: topLeftCoord.latitude -
+          (topLeftCoord.latitude - bottomRightCoord.latitude) / 2,
+        longitude: topLeftCoord.longitude -
+          (topLeftCoord.longitude - bottomRightCoord.longitude) / 2)
       let extraSpace = 1.1
       let span = MKCoordinateSpan(latitudeDelta: abs(topLeftCoord.latitude - bottomRightCoord.latitude) * extraSpace, longitudeDelta: abs(topLeftCoord.longitude - bottomRightCoord.longitude) * extraSpace)
       

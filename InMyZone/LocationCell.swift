@@ -17,9 +17,9 @@ class LocationCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     backgroundColor = UIColor.black
-    descriptionLabel.textColor = UIColor.blue
+    descriptionLabel.textColor = UIColor.white
     descriptionLabel.highlightedTextColor = descriptionLabel.textColor
-    addressLabel.textColor = UIColor.blue
+    addressLabel.textColor = UIColor.white
     addressLabel.highlightedTextColor = addressLabel.textColor
     
     let selectionView = UIView(frame: CGRect.zero)
