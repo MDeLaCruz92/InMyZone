@@ -391,7 +391,7 @@ class CurrentLocationVC: UIViewController, CLLocationManagerDelegate, CAAnimatio
   }
   
   func backgroundTransition() {
-    let rolls = arc4random_uniform(15) + 1
+    let rolls = arc4random_uniform(23) + 1
     let toImage = UIImage(named: "wp\(rolls)")
     
     UIView.transition(with: backGroundView, duration: 2, options: [.transitionCrossDissolve],

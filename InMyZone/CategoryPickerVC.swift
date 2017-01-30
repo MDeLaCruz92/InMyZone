@@ -16,7 +16,9 @@ class CategoryPickerVC: UITableViewController {
     "Apple Store",
     "Bar",
     "Bookstore",
+    "Breakfast zone",
     "Club",
+    "Coffee Shop",
     "Grocery Store",
     "Gym",
     "Highway",
@@ -28,6 +30,7 @@ class CategoryPickerVC: UITableViewController {
     "Park",
     "School",
     "Shopping Zone",
+    "Station",
     "Store",
     "Work"]
   
