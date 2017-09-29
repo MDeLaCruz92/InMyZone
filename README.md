@@ -1,5 +1,5 @@
 # What does this app consist of?
-An elegant app that allows the user to save information and pictures at a particular zone for memories or prehaps to just keep track of all the places they gone to recently. This app utilizes MapKit, Core Data, Core Animation, Core Location, Auto Resizing, Reverse Geocoding, and much more. The design of this app was made using Sketch and is currently written in Swift 3/Xcode 8.
+An elegant app that allows the user to save information and pictures at a particular zone for memories, or prehaps to just keep track of all the places they gone to recently. This app utilizes MapKit, Core Data, Core Animation, Core Location, Auto Resizing, Reverse Geocoding, and much more. The design of this app was made using Sketch and is currently written in Swift 3/Xcode 8.
 
 App link: https://itunes.apple.com/us/app/inmyzone/id1200453678?mt=8
 
